@@ -526,7 +526,7 @@ msgid ""
 msgstr ""
 
 #: ckanext/wet_boew/templates/macros/form.html:248
-#: ckanext/wet_boew/templates/snippets/search_form.html:67
+#: ckanext/wet_boew/templates/snippets/search.html:67
 msgid "Remove"
 msgstr ""
 
@@ -823,7 +823,7 @@ msgstr ""
 msgid "Resource Formats"
 msgstr ""
 
-#: ckanext/wet_boew/templates/snippets/search_form.html:4
+#: ckanext/wet_boew/templates/snippets/search.html:4
 msgid "Search..."
 msgstr ""
 
