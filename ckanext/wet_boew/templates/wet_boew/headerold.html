@@ -1,0 +1,94 @@
+{% ckan_extends %}
+{% block header_wrapper %}
+<header role="banner">
+  <div id="wb-bnr">
+    <div id="wb-bar">
+      <div class="container">
+        <div class="row">
+          {%- block headerbar -%}
+            {%- block languagetoggle -%}
+              {% snippet 'snippets/wet-boew/languagetoggle.html' %}
+            {%- endblock -%}
+          {%- endblock -%}
+          {%- block mobimenu -%}
+            <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+              <h2>{{ _('Search and menus') }}</h2>
+              <ul class="pnl-btn list-inline text-right">
+                  <li><a href="#mb-pnl" title="{{ _('Search and menus') }}" aria-controls="mb-pnl" class="overlay-lnk btn btn-xs btn-default" role="button">
+                    <span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">{{ _('Search and menus') }}</span></span></span>
+                  </a></li>
+              </ul>
+              <div id="mb-pnl"></div>
+            </section>
+          {%- endblock -%}
+        </div>
+      </div>
+    </div>
+    {% block header_debug %}
+      <div style="position: absolute">{{ super() }}</div>
+    {%- endblock -%}
+    <div class="container">
+      <div class="row">
+        {% block brand %}
+          {% snippet 'snippets/wet-boew/brand.html' %}
+        {% endblock %}
+        {% block sitesearch %}
+          <section id="wb-srch" class="col-md-4 visible-md visible-lg">
+            <h2>{{ _("Search") }}</h2>
+            {% block sitesearchform %}
+            <form method="get" action="{% url_for controller='package', action='search' %}" role="search" class="form-inline">
+              <div class="form-group">
+                <label for="wb-srch-q">{{ _("Search Your Data") }}</label>
+                <input id="wb-srch-q" class="form-control" name="q" type="search" value="" size="27" maxlength="150"/>
+              </div>
+              <button type="submit" id="wb-srch-sub" class="btn btn-default">{{ _("Search") }}</button>
+            </form>
+            {% endblock %}
+          </section>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {% block sitemenu %}
+    <nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+      <div class="container nvbar">
+        <h2>{{ _("Site menu") }}</h2>
+        <div class="row">
+          <ul class="list-inline menu">
+            {% block header_site_navigation_tabs %}
+              {{ super() }}
+            {% endblock %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {% endblock %}
+
+  {% block breadcrumb %}
+    {% if breadcrumb_content() | trim %}
+      <nav role="navigation" id="wb-bc" property="breadcrumb">
+        <h2>{{ _('You are here:') }}</h2>
+        <div class="container">
+          <div class="row">
+            <ol class="breadcrumb">
+              {% snippet 'snippets/home_breadcrumb_item.html' %}
+              {{ breadcrumb_content() }}
+            </ol>
+          </div>
+        </div>
+      </nav>
+    {% endif %}
+  {% endblock %}
+
+  {% block signed_on_off %}
+    <div class="container">
+      <div class="row">
+        {% block header_account_logged %}
+          {% snippet 'snippets/user.html' %}
+        {% endblock %}
+      </div>
+    </div>
+  {% endblock %}
+</header>
+{% endblock %}
